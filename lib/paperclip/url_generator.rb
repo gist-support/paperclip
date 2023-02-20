@@ -64,7 +64,7 @@ module Paperclip
       if url.respond_to?(:escape)
         url.escape
       else
-        CGI.escape(url).gsub(escape_regex){|m| "%#{m.ord.to_s(16).upcase}" }
+        URI(target).to_s.gsub(escape_regex){|m| "%#{m.ord.to_s(16).upcase}" }
       end
     end
 
