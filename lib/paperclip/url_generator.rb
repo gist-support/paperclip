@@ -1,4 +1,4 @@
-require 'uri'
+require 'addressable/uri'
 
 module Paperclip
   class UrlGenerator
@@ -64,7 +64,7 @@ module Paperclip
       if url.respond_to?(:escape)
         url.escape
       else
-        URI(url).to_s.gsub(escape_regex){|m| "%#{m.ord.to_s(16).upcase}" }
+        Addressable::URI.parse(url).to_s.gsub(escape_regex){|m| "%#{m.ord.to_s(16).upcase}" }
       end
     end
 
