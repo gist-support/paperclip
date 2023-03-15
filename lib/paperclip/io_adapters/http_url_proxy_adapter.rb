@@ -1,10 +1,12 @@
+require 'addressable/uri'
+
 module Paperclip
   class HttpUrlProxyAdapter < UriAdapter
 
     REGEXP = /\Ahttps?:\/\//
 
     def initialize(target)
-      super(URI(target).to_s)
+      super(Addressable::URI.parse(target).to_s)
     end
 
   end
